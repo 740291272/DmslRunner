@@ -1,0 +1,20 @@
+unit 0
+	out output:0
+	init
+		output = 996
+		printHelloWorld
+		call 1
+	end
+	main
+		printHelloWorld
+		call 1
+	end
+end
+
+unit 1
+	in input:0
+	main
+		print input
+	end
+end
+

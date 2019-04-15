@@ -8,6 +8,7 @@ import time
 def json_paser(injson):
     injson = injson.replace('*s', ' ')
     injson = injson.replace('*y', '"')
+    injson = injson.replace('*n', '\n')
     jsonin = json.loads(injson)
     if jsonin["language"] == "dmsl":
         code = jsonin["code"]

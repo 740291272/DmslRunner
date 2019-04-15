@@ -10,3 +10,10 @@ unit 0
 		call 1
 	end
 end
+
+unit 1
+	in input:0
+	main
+		print input
+	end
+end

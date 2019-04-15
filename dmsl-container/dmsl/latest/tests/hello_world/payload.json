@@ -1,10 +1,1 @@
-{
-    "language": "dmsl",
-    "files":
-     [
-        {
-            "name": "main.dmsl",
-            "content": ""
-        }
-    ]
-}
+{"language":"dmsl","code": "unit 0\nout output:0\ninit\noutput = 996\nprintHelloWorld\ncall 1\nend\nmain\nprintHelloWorld\ncall 1\nend\nend"}

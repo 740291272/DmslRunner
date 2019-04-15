@@ -1,16 +1,20 @@
 import os
 import sys
+import urllib.request
+import urllib.parse
 import json
+import base64
 import time
 
 def json_paser(injson):
+    print(injson)
+    injson = injson.replace('*s', ' ')
+    injson = injson.replace('*y', '"')
+    print(injson)
     jsonin = json.loads(injson)
     if jsonin["language"] is "dmsl":
         code = jsonin["code"]
         return code
-    else:
-        print("Error in json")
-        pass
 
 
 def dmsl_runner(code):
@@ -23,9 +27,21 @@ def dmsl_runner(code):
         f.close
         outstd = os.pipe("DmslRunner " + path)
         return outstd
-    else:
-        print("Error in creat files")
-        pass
+
+
+def back_post(str, address):
+    url = str(address)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0;Win64;x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    }
+    values = {
+        'stdout': str
+    }
+    data = urllib.parse.urlencode(values).encode('utf-8')
+    request = urllib.request.Request(url, data, headers)
+    output = urllib.request.urlopen(request).read().decode('utf-8')
+    return output
 
 
 if __name__ == "__main__":
@@ -33,5 +49,5 @@ if __name__ == "__main__":
         print("Arg Error")
     else:    
         instr = sys.argv[1]
-        print(dmsl_runner(json_paser(instr)))
-
+        address = sys.argv[2]
+        back_post(dmsl_runner(json_paser(instr)), address)

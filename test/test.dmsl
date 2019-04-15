@@ -1,12 +1,1 @@
-unit 0
-	out output:0
-	init
-		output = 996
-		printHelloWorld
-		call 1
-	end
-	main
-		printHelloWorld
-		call 1
-	end
-end
+unit 0\nout output:0\ninit\noutput = 996\nprintHelloWorld\ncall 1\nend\nmain\nprintHelloWorld\ncall 1\nend\nend

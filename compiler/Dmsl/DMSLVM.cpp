@@ -254,9 +254,6 @@ void DmslVirtualMachine::runCode(const uint8_t*& pausePoint, DmslUnit* unitObj,c
         cout<<endl<<(int)*address;
         #endif
 
-		//����ʱ����������
-		//if (stkSize >= 16) Crash(L"DmslVMջ�����");
-
         switch((Dmsl::VirtualMachine::ElfCode)*address++){
         case ElfCode::DMOVFS:{
 				uintptr_t varAddress = GetAddress(address);
@@ -310,15 +307,12 @@ void DmslVirtualMachine::runCode(const uint8_t*& pausePoint, DmslUnit* unitObj,c
         case ElfCode::DUNPA:
             PUSH_FLOAT(attrMem ->at(GetAddress(address)));
             break;
-        /*case ElfCode::DUNPU:
-            PUSH_FLOAT(m_uniform[GetAddress(address)]);
-            break;*/
         case ElfCode::NEGA:
 			if (stkSize >= 1)
 				stk.at(stkSize - 1).f = -stk.at(stkSize - 1).f;
 			else
-				std::logic_error ex("ElfVMCrashed:Stack overflow.");
-				throw std::exception(ex);
+				cout << "ElfVMCrashed:Stack overflow." << endl;
+				return;
             break;
         case ElfCode::ADD:
 			stk.at(stkSize - 2).f += stk.at(stkSize-1).f;

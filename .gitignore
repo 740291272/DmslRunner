@@ -139,5 +139,4 @@ _deps
 
 .idea
 .vscode
-runner
-dmsl-container
+**/files/runner

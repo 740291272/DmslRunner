@@ -317,7 +317,8 @@ void DmslVirtualMachine::runCode(const uint8_t*& pausePoint, DmslUnit* unitObj,c
 			if (stkSize >= 1)
 				stk.at(stkSize - 1).f = -stk.at(stkSize - 1).f;
 			else
-				throw std::exception("ElfVMCrashed:Stack overflow.");
+				std::logic_error ex("ElfVMCrashed:Stack overflow.");
+				throw std::exception(ex);
             break;
         case ElfCode::ADD:
 			stk.at(stkSize - 2).f += stk.at(stkSize-1).f;

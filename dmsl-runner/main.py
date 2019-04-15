@@ -5,6 +5,10 @@ import urllib.parse
 import json
 import time
 
+
+DEBUG = 0
+
+
 def json_paser(injson):
     injson = injson.replace('*s', ' ')
     injson = injson.replace('*y', '"')
@@ -12,7 +16,8 @@ def json_paser(injson):
     if jsonin["language"] == "dmsl":
         code = jsonin["code"]
         code = str(code).replace('*n', '\n')
-        print(code)
+        if DEBUG == 1:
+            print(code)
         return code
     else:
         print("json error")
@@ -24,10 +29,12 @@ def dmsl_runner(code):
     path = "/tmp/" + temp + "/main.dmsl"
     f = open(path, "w+")
     f.write(code)
-    print(path)
     run_path = "DmslRunner " + path
-    print(run_path)
     outstd = os.popen(run_path)
+    if DEBUG == 1:
+        print(path)
+        print(run_path)
+        print(outstd)
     return outstd
 
 
@@ -47,11 +54,13 @@ def back_post(str_in, address):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         print("Arg Error")
     else:
         instr = sys.argv[1]
         address = sys.argv[2]
+        if len(sys.argv) == 4:
+            DEBUG = sys.argv[3]
         sta1 = json_paser(instr)
         sta2 = dmsl_runner(sta1)
         sta2 = sta2.read()

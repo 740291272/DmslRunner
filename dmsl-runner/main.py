@@ -19,12 +19,15 @@ def json_paser(injson):
 
 
 def dmsl_runner(code):
-    temp = str(time.time()).replace(".", "a")[0: 10]
+    temp = str(time.time()).replace(".", "a")[0: 9]
     os.mkdir("/tmp/" + temp)
-    path = "/tmp/" + temp + "main.dmsl"
+    path = "/tmp/" + temp + "/main.dmsl"
     f = open(path, "w+")
     f.write(code)
-    outstd = os.popen("DmslRunner " + path).read()
+    print(path)
+    run_path = "DmslRunner " + path
+    print(run_path)
+    outstd = os.popen(run_path)
     return outstd
 
 
@@ -51,5 +54,5 @@ if __name__ == "__main__":
         address = sys.argv[2]
         sta1 = json_paser(instr)
         sta2 = dmsl_runner(sta1)
-        print(sta2)
+        sta2 = sta2.read()
         back_post(sta2, address)

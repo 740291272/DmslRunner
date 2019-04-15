@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"cmd"
-	"language"
+	"./cmd"
+	"./language"
 	"io/ioutil"
 	"os"
 	"path/filepath"

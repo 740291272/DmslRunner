@@ -1,1 +1,10 @@
-{"language": "dmsl","files": [{"name": "main.dmsl","content": ""}]}
+{
+    "language": "dmsl",
+    "files":
+     [
+        {
+            "name": "main.dmsl",
+            "content": ""
+        }
+    ]
+}

@@ -49,4 +49,5 @@ if __name__ == "__main__":
         address = sys.argv[2]
         sta1 = json_paser(instr)
         sta2 = dmsl_runner(sta1)
+        print(sta2)
         back_post(sta2, address)

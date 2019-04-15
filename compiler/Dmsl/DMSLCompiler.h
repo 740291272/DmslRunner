@@ -5,7 +5,7 @@
 #include <stack>
 #include "DMSLPrecompiler.h"
 #include "DMSLElf.h"
-#include "DMSL.h"
+#include "Dmsl.h"
 
 namespace Dmsl {
 	namespace Compiler {
@@ -20,83 +20,83 @@ namespace Dmsl {
 			uint32_t uniformSize,cFuncSize,cMetSize;
 		};*/
 
-		//±àÒë£¬³É¹¦Ôò·µ»Øtrue
+		//ï¿½ï¿½ï¿½ë£¬ï¿½É¹ï¿½ï¿½ò·µ»ï¿½true
 		bool Compile(const Precompiled& in, Compiled& out,std::ostream& log);
 
-		//±àÒë³ÌÐòµ¥Ôª
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôª
 		void CompileUnit(const Dmsl::Compiler::Precompiled& in,const Precompiled::Unit&,std::vector<uint8_t>& out,const std::vector<Precompiled::Unit::Code>& inProgram);
 
-		//°´ÐÐ±àÒë
+		//ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
 		void CompileLines(const Dmsl::Compiler::Precompiled& in,const Precompiled::Unit&,std::vector<uint8_t>& out,const std::vector<Precompiled::Unit::Code>& inProgram,uint32_t begin,uint32_t end);
 
-		//´Óbegin¿ªÊ¼ËÑË÷Í¬Ò»²ã´úÂëÖÐÏÂ¸öÓëleftWordÏàÍ¬µÄ×ó´ÊÓï¾ä£¬Óöµ½Ìø³ö¿ªÊ¼´¦×îµÍ²ã´úÂëµÄÔòÖ±½Ó·µ»ØendÓï¾äÎ»ÖÃ
+		//ï¿½ï¿½beginï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½leftWordï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½endï¿½ï¿½ï¿½Î»ï¿½ï¿½
 		uint32_t SearchSameLayerBlockCode(const std::vector<Precompiled::Unit::Code>& code,const std::string& leftWord,uint32_t begin);
 
-		//°ÑdoubleÑ¹½ø´úÂë
+		//ï¿½ï¿½doubleÑ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		void PushDouble(double, std::vector<uint8_t>& out);
 
-		//°ÑµØÖ·Ñ¹Èë´úÂë£¬·µ»ØÑ¹ÈëµÄµØÖ·µÄµØÖ·
+		//ï¿½Ñµï¿½Ö·Ñ¹ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½Äµï¿½Ö·ï¿½Äµï¿½Ö·
 		uintptr_t PushAddress(uintptr_t, std::vector<uint8_t>& out);
 
-		//¸ù¾Ý¶þ¼¶µØÖ·ÖØÐÂÉèÖÃÒÑ¾­±»Ñ¹ÈëµÄµØÖ·
+		//ï¿½ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½Äµï¿½Ö·
 		void ResetAddress(uintptr_t addressSaddress, uintptr_t address, std::vector<uint8_t>& out);
 
-		//°ÑÖ¸ÁîÑ¹Èë´úÂë
+		//ï¿½ï¿½Ö¸ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½
 		void PushCmd(Dmsl::VirtualMachine::ElfCode, std::vector<uint8_t>& out);
 
-		//½âÎö³öµÄ±í´ïÊ½½á¹¹Ìå
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½Ê½ï¿½á¹¹ï¿½ï¿½
 		struct ParsedMathWord final{
 			enum {
 				NUMBER, VARNAME, OPR, FUNC_NAME
 			}type;
-			bool nega = false;	//Ïà·´Êý
+			bool nega = false;	//ï¿½à·´ï¿½ï¿½
 			struct Data{
 				std::string varName;
 				double number;
 				struct Opr{
-					int level;	//ÓÅÏÈ¼¶¼ÇÂ¼
+					int level;	//ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½Â¼
 					enum {
-						COMMA,	//1¼¶ÓÅÏÈ¼¶
+						COMMA,	//1ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
 						AND,
 						OR,
-						NOT,	//2¼¶ÓÅÏÈ¼¶
-						NE,	//3¼¶ÓÅÏÈ¼¶
+						NOT,	//2ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
+						NE,	//3ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
 						EQ,
 						BIG,
 						BIGE,
 						SML,
 						SMLE,
-						ADD,	//4¼¶
+						ADD,	//4ï¿½ï¿½
 						SUB,
 						MUL,	//5
 						DIV,
 						MOD,
 						CALL_FUNC,	//7
 						NEGA    //6
-					}opr;	//²Ù×÷·û
+					}opr;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					uint32_t funcAddress;
-					//Óö¼û×óÀ¨ºÅ£¬ÓÅÏÈ¼¶+10£¬ÓÒÀ¨ºÅ-10
+					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½È¼ï¿½+10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-10
 				}opr;
 			}data;
 		};
 
-		//½âÎö±í´ïÊ½µ½´úÂë
-		//·µ»ØÖµÒâÒå£º
-		//0 - ±í´ïÊ½·µ»Ø1¸öBoolÖµ
-		//n(>=1) - ±í´ïÊ½·µ»Øn¸ödouble
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½å£º
+		//0 - ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½BoolÖµ
+		//n(>=1) - ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½double
 		int ParseMath(const Precompiled& in,const Precompiled::Unit& unit, std::string, std::vector<uint8_t>& out);
 
-		//½âÎö±í´ïÊ½ÏÂ²ãº¯Êý -- Ñ¹ÈëÉ¨Ãèµ½µÄÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½Â²ãº¯ï¿½ï¿½ -- Ñ¹ï¿½ï¿½É¨ï¿½èµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		void ParseData(const Precompiled& in, const Precompiled::Unit& unit,const ParsedMathWord&, std::vector<uint8_t>& out,std::stack<int>& testStk);
 
-		//½âÎö±í´ïÊ½ÏÂ²ãº¯Êý -- Ñ¹ÈëÉ¨Ãèµ½µÄ²Ù×÷·û
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½Â²ãº¯ï¿½ï¿½ -- Ñ¹ï¿½ï¿½É¨ï¿½èµ½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
 		void ParseOperator(const Precompiled& in,const ParsedMathWord&, std::vector<uint8_t>& out,std::stack<ParsedMathWord::Data::Opr>& stk,std::stack<int>& testStk);
 
-		//µ¯³öºÍÐ´³ö²Ù×÷·ûÕ»
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»
 		void PopOprStack(std::stack<ParsedMathWord::Data::Opr>& stk,std::vector<uint8_t>& out,std::stack<int>& testStk,const Precompiled& in);
 
-		//²éÑ¯ÎïÌåÀàÐÍ
-		//0 - ²»ÖªµÀ
+		//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//0 - ï¿½ï¿½Öªï¿½ï¿½
 		//1 - attribute
 		//2 - unit::var
 		//3 - uniform
@@ -108,10 +108,10 @@ namespace Dmsl {
 		//9 - outVarying
 		int WhatsTheVar(const Precompiled& in,const Precompiled::Unit& unit, const std::string& name);
 
-		//µÝ¹é´¦Àíif½á¹¹
+		//ï¿½Ý¹é´¦ï¿½ï¿½ifï¿½á¹¹
 		void CompileIfLines(const Dmsl::Compiler::Precompiled& in,const Precompiled::Unit&,std::vector<uint8_t>& out,const std::vector<Precompiled::Unit::Code>& inProgram,uint32_t begin,uint32_t end);
 
-		//´¦ÀíTimes½á¹¹
+		//ï¿½ï¿½ï¿½ï¿½Timesï¿½á¹¹
 		void CompileTimesLines(const Dmsl::Compiler::Precompiled& in, const Precompiled::Unit&, std::vector<uint8_t>& out, const std::vector<Precompiled::Unit::Code>& inProgram, uint32_t begin, uint32_t end,int times);
 	}
 }

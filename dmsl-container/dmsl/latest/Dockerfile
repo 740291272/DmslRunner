@@ -16,6 +16,4 @@ RUN chmod a+x /home/DmslRunner/dmslrunner
 
 USER DmslRunner
 WORKDIR /home/DmslRunner/
-CMD ["/home/DmslRunner/dmslrunner"]
-ENTRYPOINT "/home/DmslRunner/dmslrunner"
 EXPOSE 8008

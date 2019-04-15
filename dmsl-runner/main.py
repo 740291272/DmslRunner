@@ -7,10 +7,8 @@ import base64
 import time
 
 def json_paser(injson):
-    print(injson)
     injson = injson.replace('*s', ' ')
     injson = injson.replace('*y', '"')
-    print(injson)
     jsonin = json.loads(injson)
     if jsonin["language"] is "dmsl":
         code = jsonin["code"]
@@ -26,6 +24,7 @@ def dmsl_runner(code):
         f.write(code)
         f.close
         outstd = os.pipe("DmslRunner " + path)
+        print(outstd)
         return outstd
 
 

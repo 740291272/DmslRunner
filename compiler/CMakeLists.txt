@@ -12,7 +12,7 @@ add_executable(DmslRunner
         Dmsl/DataActor.cpp
         )
 
-INSTALL(DmslRunner
+INSTALL(TARGETS DmslRunner
        RUNTIME DESTINATION bin
        LIBRARY DESTINATION lib
        ARCHIVE DESTINATION libstatic

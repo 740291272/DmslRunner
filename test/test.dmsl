@@ -1,0 +1,12 @@
+unit 0
+	out output:0
+	init
+		output = 996
+		printHelloWorld
+		call 1
+	end
+	main
+		printHelloWorld
+		call 1
+	end
+end

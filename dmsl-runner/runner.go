@@ -30,6 +30,7 @@ type Result struct {
 
 func main() {
 	payload := &Payload{}
+	payload := os.Args[1]
 	err := json.NewDecoder(os.Stdin).Decode(payload)
 
 	if err != nil {

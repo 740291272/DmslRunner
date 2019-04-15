@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/740291272/DmslRunner/dmsl-runner/cmd"
-	"github.com/740291272/DmslRunner/dmsl-runner/language"
+	"cmd"
+	"language"
 	"io/ioutil"
 	"os"
 	"path/filepath"

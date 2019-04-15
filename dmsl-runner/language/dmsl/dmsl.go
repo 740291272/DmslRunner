@@ -1,7 +1,7 @@
 package dmsl
 
 import (
-	"github.com/740291272/DmslRunner/dmsl-runner/cmd"
+	"../../cmd"
 	"path/filepath"
 )
 

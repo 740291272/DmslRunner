@@ -1,7 +1,7 @@
 package language
 
 import (
-	"github.com/740291272/DmslRunner/dmsl-runner/language/dmsl"
+	"./dmsl"
 )
 	
 type runFn func([]string, string) (string, string, error)

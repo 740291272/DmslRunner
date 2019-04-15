@@ -9,10 +9,11 @@ RUN apt update
 RUN apt upgrade -y
 RUN apt install cmake git -y
 RUN apt install make -y
-RUN apt install -y build-essential
+RUN apt install build-essential python3 -y
 RUN cd /home/DmslRunner && git clone https://github.com/740291272/DmslRunner.git && cd DmslRunner/compiler && cmake . && make && make install
-ADD https://github.com/740291272/DmslRunner/releases/download/Build/dmslrunner /home/DmslRunner/dmslrunner
-RUN chmod a+x /home/DmslRunner/dmslrunner
+RUN cd /home/DmslRunner/DmslRunner && git pull
+RUN cp /home/DmslRunner/DmslRunner/dmsl-runner/main.py /home/DmslRunner/main.py
+RUN chmod a+x /home/DmslRunner/main.py
 
 USER DmslRunner
 WORKDIR /home/DmslRunner/

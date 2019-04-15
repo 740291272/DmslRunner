@@ -29,6 +29,9 @@ def dmsl_runner(code):
 
 
 if __name__ == "__main__":
-    instr = sys.argv[1]
-    print(dmsl_runner(json_paser(instr)))
+    if len(sys.argv) < 2:
+        print("Arg Error")
+    else:    
+        instr = sys.argv[1]
+        print(dmsl_runner(json_paser(instr)))
 

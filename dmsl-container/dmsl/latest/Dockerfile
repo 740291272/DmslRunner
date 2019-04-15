@@ -11,7 +11,7 @@ RUN apt upgrade -y
 RUN apt install cmake git -y
 RUN apt install make -y
 RUN apt install -y build-essential
-RUN cd /home/DmslRunner && git clone https://github.com/740291272/DmslRunner.git && cd DmslRunner/compiler && cmake . && make
+RUN cd /home/DmslRunner && git clone https://github.com/740291272/DmslRunner.git && cd DmslRunner/compiler && cmake . && make && make install
 RUN chmod +x /home/DmslRunner/DmslRunner/dmsl-runner
 
 USER DmslRunner

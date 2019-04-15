@@ -3,6 +3,7 @@
 #include <iostream>
 #include <array>
 #include "DMSLCompiler.h"
+#include <cstring>
 //#define _OUT_ASM
 
 #pragma warning(disable:4244)
@@ -47,7 +48,7 @@ static void getBinary(const char*& p, std::vector<uint8_t>& v) {
 
 Dmsl::DmslVirtualMachine::DmslVirtualMachine(const char * program)
 {
-	//ÕâÀï¶ÁÈë¶þ½øÖÆÎÄ¼þ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 	m_program.linkMetSize = *(uint32_t*)program;
 	program += sizeof(uint32_t);
 	m_program.linkFuncSize = *(uint32_t*)program;
@@ -99,7 +100,7 @@ Dmsl::DmslVirtualMachine::DmslVirtualMachine(const char * program)
 		}
 	}
 
-	//·ÖÅäÄÚ´æ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
 	m_cMetLinks.resize(m_program.linkMetSize);
 	m_cFuncLinks.resize(m_program.linkFuncSize, nullptr);
 	//m_uniform.resize(m_program.uniformSize);
@@ -143,8 +144,8 @@ double DmslUnit::GetAttribute(const std::string& attribute) const
 }
 
 Dmsl::DmslUnit::DmslUnit(const DmslVirtualMachine& dvm,uint32_t unit, std::shared_ptr<const std::vector<double>> varyingIn){
-    if(!dvm.Good()) throw runtime_error("DmslÐéÄâ»úÖÐµÄ´úÂë²»ÕýÈ·£¡");
-    if(!dvm.HaveUnit(unit)) throw runtime_error("Ã»ÓÐÔÚDmslÐéÄâ»úÖÐÕÒµ½¶ÔÓ¦³ÌÐòµ¥Ôª " + to_string(unit)+"£¡");
+    if(!dvm.Good()) throw runtime_error("Dmslï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ´ï¿½ï¿½ë²»ï¿½ï¿½È·ï¿½ï¿½");
+    if(!dvm.HaveUnit(unit)) throw runtime_error("Ã»ï¿½ï¿½ï¿½ï¿½Dmslï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ôª " + to_string(unit)+"ï¿½ï¿½");
     m_attribute.resize(dvm.m_program.units.at(unit).memSize);
     m_dvm = &dvm;
     m_unit = &(m_dvm->m_program.units.at(unit));
@@ -194,7 +195,7 @@ void Dmsl::DmslVirtualMachine::readyCode(std::vector<uint8_t>& code)
 		{ ADDRESS },	//VARYING_MOV
 		{ ADDRESS },
 		{ ADDRESS },
-		{  },	//»ùÓÚÊ±¼äÖáµÄÔÝÍ£
+		{  },	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£
 		{ADDRESS},
 		{ADDRESS}
 	};
@@ -202,10 +203,10 @@ void Dmsl::DmslVirtualMachine::readyCode(std::vector<uint8_t>& code)
 	for (uintptr_t i = 0; i < code.size();) {
 		auto opr = (Dmsl::VirtualMachine::ElfCode)code[i++];
 		if (!oprArgList[(int)opr].empty()) {
-			//ÊÕ¼¯²ÎÊý
+			//ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (oprArgList[(int)opr][0] == DMOVFS) {
 				//if (i + 1 >= code.size()) continue;
-				//Ìø¹ýDMOVFS²ÎÊý
+				//ï¿½ï¿½ï¿½ï¿½DMOVFSï¿½ï¿½ï¿½ï¿½
 				i += sizeof(uintptr_t);
 				auto num = (uintptr_t&)code[i];
 				i += sizeof(uintptr_t);
@@ -213,7 +214,7 @@ void Dmsl::DmslVirtualMachine::readyCode(std::vector<uint8_t>& code)
 				
 			}
 			else {
-				//Ìø¹ýÆäËü²ÎÊý
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				for (auto type : oprArgList[int(opr)]) {
 					if (type == ADDRESS) {
 						i += sizeof(uintptr_t);
@@ -253,8 +254,8 @@ void DmslVirtualMachine::runCode(const uint8_t*& pausePoint, DmslUnit* unitObj,c
         cout<<endl<<(int)*address;
         #endif
 
-		//±ÀÀ£Ê±°ÑÕâ¸ö´úÂë´ò¿ª
-		//if (stkSize >= 16) Crash(L"DmslVMÕ»Òç³ö¡£");
+		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//if (stkSize >= 16) Crash(L"DmslVMÕ»ï¿½ï¿½ï¿½ï¿½ï¿½");
 
         switch((Dmsl::VirtualMachine::ElfCode)*address++){
         case ElfCode::DMOVFS:{

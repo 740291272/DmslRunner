@@ -271,7 +271,8 @@ void DmslVirtualMachine::runCode(const uint8_t*& pausePoint, DmslUnit* unitObj,c
 				attrMem->at(GetAddress(address)) = POP_FLOAT();
 			}
 			else {
-				throw std::exception("ElfVMCrashed:Stack overflow.");
+				std::logic_error ex("ElfVMCrashed:Stack overflow.");
+				throw std::exception(ex);
 			}
             break;
         case ElfCode::CFUNC:{

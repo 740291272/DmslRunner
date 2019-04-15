@@ -1,5 +1,4 @@
 FROM ubuntu:latest
-MAINTAINER gloomyghost
 
 # Add user
 RUN groupadd DmslRunner

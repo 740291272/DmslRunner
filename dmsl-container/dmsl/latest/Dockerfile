@@ -12,11 +12,11 @@ RUN apt install cmake git -y
 RUN apt install make -y
 RUN apt install -y build-essential
 RUN cd /home/DmslRunner && git clone https://github.com/740291272/DmslRunner.git && cd DmslRunner/compiler && cmake . && make && make install
-RUN cd /home/DmslRunner/DmslRunner/dmsl-runner && 
-RUN chmod a+x /home/DmslRunner/DmslRunner/dmsl-runner
+ADD https://github.com/740291272/DmslRunner/releases/download/Build/dmslrunner /home/DmslRunner/dmslrunner
+RUN chmod a+x /home/DmslRunner/dmslrunner
 
 USER DmslRunner
 WORKDIR /home/DmslRunner/
-CMD ["/home/DmslRunner/dmsl-runner"]
-ENTRYPOINT "/home/DmslRunner/dmsl-runner"
+CMD ["/home/DmslRunner/dmslrunner"]
+ENTRYPOINT "/home/DmslRunner/dmslrunner"
 EXPOSE 8008

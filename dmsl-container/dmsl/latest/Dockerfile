@@ -12,8 +12,6 @@ RUN apt install make -y
 RUN apt install build-essential python3 -y
 RUN cd /home/DmslRunner && git clone https://github.com/740291272/DmslRunner.git && cd DmslRunner/compiler && cmake . && make && make install
 RUN echo 0.10
-RUN apt install python3-pip -y
-RUN pip3 install base64
 RUN cd /home/DmslRunner/DmslRunner && git pull
 RUN cp /home/DmslRunner/DmslRunner/dmsl-runner/main.py /home/DmslRunner/main.py
 RUN chmod a+x /home/DmslRunner/main.py

@@ -32,16 +32,17 @@ def dmsl_runner(code):
     f.close()
     run_path = "cd " + path + " && DmslRunner demo.dmsl"
 
-    outstd = subprocess.Popen(run_path, shell=True, stdout=subprocess.PIPE)
-    outstd.wait()
-
-    if DEBUG == 1:
-        print(path)
-        print(run_path)
-        print(outstd)
-        pass
-    out = outstd.stdout.read()
-    out = bytes.decode(out)
+    try:
+        outstd = subprocess.Popen(run_path, shell=True, stdout=subprocess.PIPE)
+        outstd.wait()
+        if DEBUG == 1:
+            print(path)
+            print(run_path)
+            print(outstd)
+        out = outstd.stdout.read()
+        out = bytes.decode(out)
+    except:
+        out = "你的dmsl代码错误啦，回去重新学！"
     return out
 
 

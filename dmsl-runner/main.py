@@ -3,6 +3,7 @@ import sys
 import urllib.request
 import urllib.parse
 import json
+import time
 import base64
 
 
@@ -10,11 +11,11 @@ DEBUG = 0
 
 
 def json_paser(injson):
-    injson = base64.decode(injson)
+    injson = base64.b64decode(injson)
     jsonin = json.loads(injson)
     if jsonin["language"] == "dmsl":
         code = jsonin["code"]
-        code = base64.decode(code)
+        code = base64.b64decode(code)
         if DEBUG == 1:
             print(code)
         return code

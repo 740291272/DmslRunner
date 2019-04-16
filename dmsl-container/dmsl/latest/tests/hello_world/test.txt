@@ -1,1 +1,0 @@
-{*ylanguage*y:*s*ydmsl*y,*s*ycode*y:*s*yunit*s0*nout*soutput:0*ninit*noutput*s=*s996*nprintHelloWorld*ncall*s1*nend*nmain*nprintHelloWorld*ncall*s1*nend*nend*n*nunit*s1*nin*sinput:0*nmain*nprint*sinput*nend*nend*n*y}
